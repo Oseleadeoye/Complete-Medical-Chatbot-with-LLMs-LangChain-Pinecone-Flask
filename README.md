@@ -1,6 +1,6 @@
 # Complete Medical Chatbot with LLMs, LangChain, Pinecone & Flask
 
-A conversational AI assistant that answers medical questions using Retrieval-Augmented Generation (RAG). Built with LangChain, Llama 3 (via Ollama), Pinecone, and Flask — runs entirely locally for free.
+A conversational AI assistant that answers medical questions using Retrieval-Augmented Generation (RAG). Built with LangChain, Llama 3 (via Ollama), Pinecone, and Flask — runs entirely locally at no cost.
 
 ---
 
@@ -37,15 +37,15 @@ pip install -r requirements.txt
 
 ### 4. Install Ollama and pull Llama 3
 
-Download and install Ollama from [ollama.com](https://ollama.com), then pull the model:
+Download Ollama from [ollama.com](https://ollama.com), then run:
 
 ```bash
 ollama pull llama3
 ```
 
-Keep Ollama running in the background before starting the app.
+Keep Ollama running in the background — it starts automatically on most installs.
 
-### 5. Add your API keys
+### 5. Add your Pinecone API key
 
 Create a `.env` file in the root directory:
 
@@ -74,7 +74,7 @@ Open `http://localhost:8080` in your browser.
 | Layer | Technology |
 |-------|-----------|
 | Web framework | Flask |
-| LLM | Llama 3 via Ollama (free, local) |
+| LLM | Llama 3 (via Ollama, runs locally) |
 | Embeddings | HuggingFace `all-MiniLM-L6-v2` |
 | Vector database | Pinecone |
 | RAG orchestration | LangChain |

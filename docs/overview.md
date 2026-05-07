@@ -25,12 +25,12 @@ This makes the chatbot safer and more reliable for a medical domain.
 | Layer | Technology |
 |-------|-----------|
 | Web framework | Flask |
-| LLM | Llama 3 (Ollama — runs locally, free) |
+| LLM | Llama 3 (via Ollama, runs locally) |
 | Embeddings | `sentence-transformers/all-MiniLM-L6-v2` (HuggingFace) |
 | Vector database | Pinecone |
 | RAG orchestration | LangChain |
 | Containerisation | Docker |
-| Hosting | Local (Ollama + Flask) |
+| Hosting | Render |
 
 ---
 

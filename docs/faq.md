@@ -26,16 +26,13 @@ Yes. Replace `data/Medical_book.pdf` with your own PDF, then re-run `store_index
 
 ---
 
-**Can I use a different local model instead of Llama 3?**
+**Can I use a different Ollama model?**
 
-Yes. In `app.py`, change the model name:
+Yes. In `app.py`, change:
 ```python
-chatModel = ChatOllama(model="mistral")   # or "llama3.1", "gemma2", etc.
+chatModel = ChatOllama(model="llama3")
 ```
-Then pull the model with Ollama before starting the app:
-```bash
-ollama pull mistral
-```
+to any model you have pulled locally, e.g. `mistral`, `llama3.2`, or `phi3`. Pull a model with `ollama pull <model-name>`.
 
 ---
 
@@ -55,6 +52,6 @@ Chat history is stored in memory (`chat_history` list in `app.py`). It resets on
 
 **What is the cost to run this?**
 
-- **Ollama / Llama 3:** Free. Runs entirely on your local machine.
+- **Ollama + Llama 3:** Free. Runs entirely on your local machine — no API costs.
 - **Pinecone:** The free Starter plan supports one index and is sufficient for this project.
-- **Hosting:** Runs locally — no hosting cost.
+- **HuggingFace embeddings:** Free. The model runs locally after the initial download.

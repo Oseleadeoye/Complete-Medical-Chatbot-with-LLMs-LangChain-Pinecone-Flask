@@ -52,7 +52,8 @@ When `app.py` starts, it:
 1. Loads environment variables (`PINECONE_API_KEY`, `OPENAI_API_KEY`)
 2. Downloads the HuggingFace embeddings model (cached after first run)
 3. Connects to the existing Pinecone index
-4. Initialises the LangChain RAG chain (retriever + Llama 3 (Ollama))
+4. Connects to the local Ollama server (must be running separately)
+5. Initialises the LangChain RAG chain (retriever + Llama 3)
 
 ---
 
@@ -60,9 +61,9 @@ When `app.py` starts, it:
 
 When a user sends a message (`POST /get`):
 
-1. **Contextualize** — the chat history and new question are passed to Llama 3 (Ollama), which reformulates the question as a standalone query (so follow-up questions work correctly)
+1. **Contextualize** — the chat history and new question are passed to Llama 3, which reformulates the question as a standalone query (so follow-up questions work correctly)
 2. **Retrieve** — the reformulated question is embedded and used to search Pinecone for the 3 most similar document chunks
-3. **Answer** — Llama 3 (Ollama) receives the retrieved chunks as context and generates a concise answer (max 3 sentences)
+3. **Answer** — Llama 3 receives the retrieved chunks as context and generates a concise answer (max 3 sentences)
 4. **History update** — the question and answer are appended to the in-memory `chat_history` list for future context
 
 ---
