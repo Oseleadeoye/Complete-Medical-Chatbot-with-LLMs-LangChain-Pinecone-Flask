@@ -1,21 +1,20 @@
 # Complete Medical Chatbot with LLMs, LangChain, Pinecone & Flask
 
-A conversational AI assistant that answers medical questions using Retrieval-Augmented Generation (RAG). Built with LangChain, Llama 3.3 (via Groq), Pinecone, and Flask — deployable to the cloud at no cost.
-
-**Live demo:** https://medical-chatbot.fly.dev/
+A conversational AI assistant that answers medical questions using Retrieval-Augmented Generation (RAG). Built with LangChain, Llama 3.3 (via Groq), Pinecone, and Flask.
 
 ---
 
-## Documentation
+## Try it live
 
-- [Project Overview](docs/overview.md) — what it is, tech stack, design decisions
-- [How It Works](docs/workflow.md) — architecture, data flow, key files
-- [Deploying to Fly.io](docs/deployment.md) — step-by-step deployment guide
-- [FAQ](docs/faq.md) — common questions and troubleshooting
+**https://medical-chatbot.fly.dev/**
+
+No setup needed — just open the link and start asking medical questions.
 
 ---
 
-## Quickstart
+## Run it locally
+
+If you want to run the project on your own machine:
 
 ### 1. Clone the repo
 
@@ -74,3 +73,13 @@ Open `http://localhost:8080` in your browser.
 | Vector database | Pinecone |
 | RAG orchestration | LangChain |
 | Containerisation | Docker |
+| Hosting | Fly.io |
+
+---
+
+## Documentation
+
+- [Project Overview](docs/overview.md)
+- [How It Works](docs/workflow.md)
+- [Deploying to Fly.io](docs/deployment.md)
+- [FAQ](docs/faq.md)
