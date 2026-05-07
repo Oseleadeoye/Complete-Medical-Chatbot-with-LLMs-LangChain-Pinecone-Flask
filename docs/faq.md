@@ -26,13 +26,16 @@ Yes. Replace `data/Medical_book.pdf` with your own PDF, then re-run `store_index
 
 ---
 
-**Can I use a different LLM instead of GPT-4o?**
+**Can I use a different local model instead of Llama 3?**
 
-Yes. In `app.py`, replace:
+Yes. In `app.py`, change the model name:
 ```python
-chatModel = ChatOpenAI(model="gpt-4o")
+chatModel = ChatOllama(model="mistral")   # or "llama3.1", "gemma2", etc.
 ```
-with any LangChain-compatible chat model, e.g. `gpt-3.5-turbo` for lower cost.
+Then pull the model with Ollama before starting the app:
+```bash
+ollama pull mistral
+```
 
 ---
 
@@ -52,6 +55,6 @@ Chat history is stored in memory (`chat_history` list in `app.py`). It resets on
 
 **What is the cost to run this?**
 
-- **OpenAI:** GPT-4o charges per token. Light usage costs a few cents per day.
+- **Ollama / Llama 3:** Free. Runs entirely on your local machine.
 - **Pinecone:** The free Starter plan supports one index and is sufficient for this project.
-- **Render:** The free tier may hit memory limits due to the embeddings model. The Starter plan ($7/mo) is recommended.
+- **Hosting:** Runs locally — no hosting cost.
