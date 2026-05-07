@@ -1,4 +1,4 @@
-# Complete-Medical-Chatbot-with-LLMs-LangChain-Pinecone-Flask-AWS
+# Complete Medical Chatbot with LLMs, LangChain, Pinecone & Flask
 
 
 # How to run?
@@ -7,9 +7,10 @@
 Clone the repository
 
 ```bash
-git clonehttps://github.com/entbappy/Build-a-Complete-Medical-Chatbot-with-LLMs-LangChain-Pinecone-Flask-AWS.git
+git clone https://github.com/Oseleadeoye/Complete-Medical-Chatbot-with-LLMs-LangChain-Pinecone-Flask.git
 ```
-### STEP 01- Create a conda environment after opening the repository
+
+### STEP 01 - Create a conda environment after opening the repository
 
 ```bash
 conda create -n medibot python=3.10 -y
@@ -20,13 +21,14 @@ conda activate medibot
 ```
 
 
-### STEP 02- install the requirements
+### STEP 02 - Install the requirements
+
 ```bash
 pip install -r requirements.txt
 ```
 
 
-### Create a `.env` file in the root directory and add your Pinecone & openai credentials as follows:
+### Create a `.env` file in the root directory and add your Pinecone & OpenAI credentials:
 
 ```ini
 PINECONE_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
@@ -35,7 +37,7 @@ OPENAI_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 
 ```bash
-# run the following command to store embeddings to pinecone
+# Run the following command to store embeddings to Pinecone
 python store_index.py
 ```
 
@@ -44,88 +46,81 @@ python store_index.py
 python app.py
 ```
 
-Now,
-```bash
-open up localhost:
-```
+Now open `http://localhost:8080` in your browser.
 
 
-### Techstack Used:
+### Tech Stack:
 
 - Python
 - LangChain
 - Flask
-- GPT
+- GPT-4o
 - Pinecone
 
 
 
-# AWS-CICD-Deployment-with-Github-Actions
+# Deployment on Render (with GitHub Actions CI/CD)
 
-## 1. Login to AWS console.
+## 1. Create a Render account
 
-## 2. Create IAM user for deployment
+Sign up at [render.com](https://render.com).
 
-	#with specific access
+## 2. Create a new Web Service
 
-	1. EC2 access : It is virtual machine
+1. Go to **Dashboard → New → Web Service**
+2. Connect your GitHub repository
+3. Render will automatically detect the `Dockerfile`
+4. Set the following:
+   - **Environment:** Docker
+   - **Branch:** `main`
+   - **Region:** Choose one closest to your users
 
-	2. ECR: Elastic Container registry to save your docker image in aws
+## 3. Set environment variables in Render
 
+In your Render service dashboard go to **Environment** and add:
 
-	#Description: About the deployment
+| Key | Value |
+|-----|-------|
+| `PINECONE_API_KEY` | your Pinecone API key |
+| `OPENAI_API_KEY` | your OpenAI API key |
 
-	1. Build docker image of the source code
+## 4. Deploy
 
-	2. Push your docker image to ECR
+Click **Deploy**. Render will build the Docker image and start the service.
 
-	3. Launch Your EC2 
+Every subsequent push to `main` will trigger an automatic redeploy.
 
-	4. Pull Your image from ECR in EC2
+## 5. Set up GitHub Actions (optional CI step)
 
-	5. Lauch your docker image in EC2
+If you want to run tests or checks before Render deploys, add a `.github/workflows/ci.yaml`:
 
-	#Policy:
+```yaml
+name: CI
 
-	1. AmazonEC2ContainerRegistryFullAccess
+on:
+  push:
+    branches: [main]
 
-	2. AmazonEC2FullAccess
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Build Docker image
+        run: docker build -t medical-chatbot .
+```
 
-	
-## 3. Create ECR repo to store/save docker image
-    - Save the URI: 315865595366.dkr.ecr.us-east-1.amazonaws.com/medicalbot
+Render's GitHub integration handles the actual deployment automatically after CI passes.
 
-	
-## 4. Create EC2 machine (Ubuntu) 
+## 6. GitHub Secrets required
 
-## 5. Open EC2 and Install docker in EC2 Machine:
-	
-	
-	#optinal
+Only your API keys are needed — no cloud provider credentials:
 
-	sudo apt-get update -y
-
-	sudo apt-get upgrade
-	
-	#required
-
-	curl -fsSL https://get.docker.com -o get-docker.sh
-
-	sudo sh get-docker.sh
-
-	sudo usermod -aG docker ubuntu
-
-	newgrp docker
-	
-# 6. Configure EC2 as self-hosted runner:
-    setting>actions>runner>new self hosted runner> choose os> then run command one by one
-
-
-# 7. Setup github secrets:
-
-   - AWS_ACCESS_KEY_ID
-   - AWS_SECRET_ACCESS_KEY
-   - AWS_DEFAULT_REGION
-   - ECR_REPO
-   - PINECONE_API_KEY
-   - OPENAI_API_KEY
+- `PINECONE_API_KEY`
+- `OPENAI_API_KEY`
