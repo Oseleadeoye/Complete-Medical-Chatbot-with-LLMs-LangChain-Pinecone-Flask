@@ -1,6 +1,6 @@
 # Complete Medical Chatbot with LLMs, LangChain, Pinecone & Flask
 
-A conversational AI assistant that answers medical questions using Retrieval-Augmented Generation (RAG). Built with LangChain, Llama 3 (via Ollama), Pinecone, and Flask — runs entirely locally at no cost.
+A conversational AI assistant that answers medical questions using Retrieval-Augmented Generation (RAG). Built with LangChain, Llama 3.3 (via Groq), Pinecone, and Flask — deployable to the cloud at no cost.
 
 ---
 
@@ -35,31 +35,24 @@ conda activate medibot
 pip install -r requirements.txt
 ```
 
-### 4. Install Ollama and pull Llama 3
-
-Download Ollama from [ollama.com](https://ollama.com), then run:
-
-```bash
-ollama pull llama3
-```
-
-Keep Ollama running in the background — it starts automatically on most installs.
-
-### 5. Add your Pinecone API key
+### 4. Add your API keys
 
 Create a `.env` file in the root directory:
 
 ```ini
-PINECONE_API_KEY = "your-pinecone-api-key"
+PINECONE_API_KEY=your-pinecone-api-key
+GROQ_API_KEY=your-groq-api-key
 ```
 
-### 6. Index the knowledge base (first time only)
+Get a free Groq API key at [console.groq.com](https://console.groq.com).
+
+### 5. Index the knowledge base (first time only)
 
 ```bash
 python store_index.py
 ```
 
-### 7. Run the app
+### 6. Run the app
 
 ```bash
 python app.py
@@ -74,7 +67,7 @@ Open `http://localhost:8080` in your browser.
 | Layer | Technology |
 |-------|-----------|
 | Web framework | Flask |
-| LLM | Llama 3 (via Ollama, runs locally) |
+| LLM | Llama 3.3 70B (via Groq API, free tier) |
 | Embeddings | HuggingFace `all-MiniLM-L6-v2` |
 | Vector database | Pinecone |
 | RAG orchestration | LangChain |

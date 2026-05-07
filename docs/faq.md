@@ -26,13 +26,13 @@ Yes. Replace `data/Medical_book.pdf` with your own PDF, then re-run `store_index
 
 ---
 
-**Can I use a different Ollama model?**
+**Can I use a different model?**
 
-Yes. In `app.py`, change:
+Yes. In `app.py`, change the model name in:
 ```python
-chatModel = ChatOllama(model="llama3")
+chatModel = ChatGroq(model="llama-3.3-70b-versatile")
 ```
-to any model you have pulled locally, e.g. `mistral`, `llama3.2`, or `phi3`. Pull a model with `ollama pull <model-name>`.
+to any model supported by Groq, e.g. `llama-3.1-8b-instant` or `mixtral-8x7b-32768`. See the full list at [console.groq.com/docs/models](https://console.groq.com/docs/models).
 
 ---
 
@@ -52,6 +52,6 @@ Chat history is stored in memory (`chat_history` list in `app.py`). It resets on
 
 **What is the cost to run this?**
 
-- **Ollama + Llama 3:** Free. Runs entirely on your local machine — no API costs.
+- **Groq API:** Free tier includes generous rate limits, more than enough for a demo or portfolio project.
 - **Pinecone:** The free Starter plan supports one index and is sufficient for this project.
 - **HuggingFace embeddings:** Free. The model runs locally after the initial download.

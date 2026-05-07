@@ -7,7 +7,7 @@ This guide walks through deploying the Medical Chatbot to [Render](https://rende
 - A [Render](https://render.com) account
 - Your GitHub repository connected to Render
 - A [Pinecone](https://pinecone.io) account with an index named `medical-chatbot`
-- An [OpenAI](https://platform.openai.com) API key
+- A [Groq](https://console.groq.com) API key (free)
 
 ---
 
@@ -39,7 +39,7 @@ In your Render service dashboard, go to **Environment** and add:
 | Key | Value |
 |-----|-------|
 | `PINECONE_API_KEY` | Your Pinecone API key |
-| `OPENAI_API_KEY` | Your OpenAI API key |
+| `GROQ_API_KEY` | Your Groq API key |
 
 > These are the only credentials required. No cloud provider keys needed.
 
