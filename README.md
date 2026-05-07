@@ -2,13 +2,15 @@
 
 A conversational AI assistant that answers medical questions using Retrieval-Augmented Generation (RAG). Built with LangChain, Llama 3.3 (via Groq), Pinecone, and Flask — deployable to the cloud at no cost.
 
+**Live demo:** https://medical-chatbot.fly.dev/
+
 ---
 
 ## Documentation
 
 - [Project Overview](docs/overview.md) — what it is, tech stack, design decisions
 - [How It Works](docs/workflow.md) — architecture, data flow, key files
-- [Deploying to Render](docs/deployment.md) — step-by-step deployment guide
+- [Deploying to Fly.io](docs/deployment.md) — step-by-step deployment guide
 - [FAQ](docs/faq.md) — common questions and troubleshooting
 
 ---
