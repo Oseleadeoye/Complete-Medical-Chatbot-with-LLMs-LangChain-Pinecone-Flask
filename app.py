@@ -76,9 +76,18 @@ def index():
 def chat():
     msg = request.form["msg"]
     input = msg
-    print(input)
+    try:
+        print(input)
+    except Exception:
+        pass
     response = rag_chain.invoke({"input": msg, "chat_history": chat_history})
-    print("Response : ", response["answer"])
+    try:
+        print("Response : ", response["answer"])
+    except Exception:
+        try:
+            print("Response : ", response["answer"].encode('ascii', errors='replace').decode('ascii'))
+        except Exception:
+            pass
     chat_history.extend([HumanMessage(content=msg), AIMessage(content=response["answer"])])
     return str(response["answer"])
 
