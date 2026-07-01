@@ -30,9 +30,9 @@ Yes. Replace `data/Medical_book.pdf` with your own PDF, then re-run `store_index
 
 Yes. In `app.py`, change the model name in:
 ```python
-chatModel = ChatGroq(model="llama-3.3-70b-versatile")
+chatModel = ChatGroq(model="qwen/qwen3.6-27b")
 ```
-to any model supported by Groq, e.g. `llama-3.1-8b-instant` or `mixtral-8x7b-32768`. See the full list at [console.groq.com/docs/models](https://console.groq.com/docs/models).
+to any model supported by Groq, e.g. `openai/gpt-oss-120b` or `llama3-8b-8192`. See the full list at [console.groq.com/docs/models](https://console.groq.com/docs/models).
 
 ---
 

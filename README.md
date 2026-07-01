@@ -1,6 +1,6 @@
 # Complete Medical Chatbot with LLMs, LangChain, Pinecone & Flask
 
-A conversational AI assistant that answers medical questions using Retrieval-Augmented Generation (RAG). Built with LangChain, Llama 3.3 (via Groq), Pinecone, and Flask.
+A conversational AI assistant that answers medical questions using Retrieval-Augmented Generation (RAG). Built with LangChain, Qwen3.6 27B (via Groq), Pinecone, and Flask.
 
 ---
 
@@ -68,7 +68,7 @@ Open `http://localhost:8080` in your browser.
 | Layer | Technology |
 |-------|-----------|
 | Web framework | Flask |
-| LLM | Llama 3.3 70B (via Groq API, free tier) |
+| LLM | Qwen3.6 27B (via Groq API, free tier) |
 | Embeddings | HuggingFace `all-MiniLM-L6-v2` |
 | Vector database | Pinecone |
 | RAG orchestration | LangChain |

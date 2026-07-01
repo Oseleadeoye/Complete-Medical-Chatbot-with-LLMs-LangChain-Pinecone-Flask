@@ -25,7 +25,7 @@ This makes the chatbot safer and more reliable for a medical domain.
 | Layer | Technology |
 |-------|-----------|
 | Web framework | Flask |
-| LLM | Llama 3.3 70B (via Groq API, free tier) |
+| LLM | Qwen3.6 27B (via Groq API, free tier) |
 | Embeddings | `sentence-transformers/all-MiniLM-L6-v2` (HuggingFace) |
 | Vector database | Pinecone |
 | RAG orchestration | LangChain |
