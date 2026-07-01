@@ -73,7 +73,7 @@ Open `http://localhost:8080` in your browser.
 | Vector database | Pinecone |
 | RAG orchestration | LangChain |
 | Containerisation | Docker |
-| Hosting | Fly.io |
+| Hosting | Fly.io (1 GB RAM, 1 CPU) |
 
 ---
 

@@ -30,7 +30,7 @@ This makes the chatbot safer and more reliable for a medical domain.
 | Vector database | Pinecone |
 | RAG orchestration | LangChain |
 | Containerisation | Docker |
-| Hosting | Render |
+| Hosting | Fly.io (1 GB RAM, 1 CPU) |
 
 ---
 
@@ -63,6 +63,12 @@ This makes the chatbot safer and more reliable for a medical domain.
 **Top-3 retrieval** — the retriever fetches the 3 most semantically similar chunks from Pinecone for each query. This balances context richness against token cost.
 
 **3-sentence answer limit** — the system prompt constrains the LLM to concise answers, which is appropriate for a medical context where brevity reduces the risk of misinterpretation.
+
+**Temperature 0.2** — a low temperature is used to keep responses factual and deterministic, reducing hallucination risk for a medical domain.
+
+**Thinking mode disabled** — Qwen3.6 27B's built-in chain-of-thought reasoning is disabled via `reasoning_effort: none` to prevent internal reasoning traces from appearing in user-facing responses.
+
+**1 GB memory on Fly.io** — the HuggingFace embeddings model requires ~500 MB RAM to load. The Fly.io machine is configured with 1 GB to prevent OOM kills. `min_machines_running = 1` keeps the machine always warm to avoid cold-start delays.
 
 ---
 

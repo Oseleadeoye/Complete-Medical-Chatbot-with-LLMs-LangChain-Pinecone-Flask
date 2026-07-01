@@ -51,7 +51,7 @@ Your app will be live at `https://<app-name>.fly.dev/`.
 
 ## Step 5 — Scale to 1 machine (recommended)
 
-The default deploys 2 machines for high availability. On the free tier, scale to 1 to avoid OOM crashes:
+The default deploys 2 machines for high availability. On the free tier, scale to 1:
 
 ```bash
 fly scale count 1 --yes
@@ -69,10 +69,27 @@ fly deploy
 
 ---
 
+## Memory Requirements
+
+The HuggingFace `all-MiniLM-L6-v2` embeddings model requires significant RAM to load at startup.
+The `fly.toml` is configured with **1 GB memory** to prevent Out-of-Memory (OOM) crashes:
+
+```toml
+[[vm]]
+  memory = "1gb"
+  cpus = 1
+```
+
+> **Warning:** Do NOT reduce memory below 1 GB. The machine will be OOM-killed during startup if memory is insufficient, causing 502 errors.
+
+`min_machines_running = 1` is also set to keep at least one machine always warm, eliminating cold-start delays on first visit.
+
+---
+
 ## Monitoring & Logs
 
 ```bash
-fly logs
+fly logs --app medical-chatbot --no-tail
 ```
 
 Live logs are also available at [fly.io/apps/medical-chatbot/monitoring](https://fly.io/apps/medical-chatbot/monitoring).

@@ -50,8 +50,19 @@ Chat history is stored in memory (`chat_history` list in `app.py`). It resets on
 
 ---
 
+**The deployed app shows a 502 error or takes a very long time to load — why?**
+
+There are two common causes:
+
+1. **Out-of-Memory (OOM) crash** — The HuggingFace `all-MiniLM-L6-v2` model requires ~500 MB RAM just to load. If the Fly.io machine has less than 1 GB memory, the Linux OOM killer will terminate the Python process during startup, causing 502 errors. The `fly.toml` is configured with `memory = "1gb"` to prevent this.
+
+2. **Cold start** — If `min_machines_running = 0`, the machine shuts down after periods of inactivity. The next visitor triggers a cold boot (pulling the Docker image, loading embeddings), which takes 20–40 seconds before the app is reachable. `min_machines_running = 1` is set to keep the machine always warm.
+
+---
+
 **What is the cost to run this?**
 
 - **Groq API:** Free tier includes generous rate limits, more than enough for a demo or portfolio project.
 - **Pinecone:** The free Starter plan supports one index and is sufficient for this project.
 - **HuggingFace embeddings:** Free. The model runs locally after the initial download.
+- **Fly.io:** The 1 GB / 1 CPU machine with `min_machines_running = 1` stays within the Fly.io free tier allowance (3 shared-CPU-1x 256 MB machines free, or equivalent compute hours).
